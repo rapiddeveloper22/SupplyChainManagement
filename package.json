@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "@openzeppelin/truffle-upgrades": "^1.11.0"
+  },
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  },
+  "scripts": {
+    "start": "npm run lite",
+    "lite": "lite-server"
+  },
+  
+}

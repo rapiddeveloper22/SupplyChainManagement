@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Supply Chain Management</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/d093252348.js" crossorigin="anonymous"></script>
+  	<link rel="stylesheet" type="text/css" href="homepage.css">
+</head>
+<body class="hero-anime">	
+
+	<div class="navigation-wrap bg-light start-header start-style">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<nav class="navbar navbar-expand-md navbar-light">
+					
+						<a class="navbar-brand" href="https://front.codes/" target="_blank"><img src="https://assets.codepen.io/1462889/fcy.png" alt=""></a>	
+						
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav ml-auto py-4 py-md-0">
+								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Track</a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">By Mobile Id</a>
+										<a class="dropdown-item" href="#">By IMEI number</a>
+										<a class="dropdown-item" href="#">Whole history</a>
+									</div>
+								</li>
+								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Find</a>
+									<div class="dropdown-menu">
+										<a class="dropdown-item" href="#">User</a>
+										<a class="dropdown-item" href="#">Manufacturer</a>
+										<a class="dropdown-item" href="#">Mobile</a>
+									</div>
+								</li>
+								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link" onclick="document.getElementById('id01').style.display='block'">Login</a>
+								</li>
+								<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+									<a class="nav-link" onclick="document.getElementById('id01').style.display='block'">Sign up</a>
+								</li>
+							</ul>
+						</div>
+						
+					</nav>		
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End of Navbar -->
+
+	<div class="section full-height">
+		<div class="absolute-center">
+			<div class="section">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h1><span>Welcome to the<br>world of blockchain</span></h1>
+						</div>	
+					</div>		
+				</div>		
+			</div>
+			<div class="section mt-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<div id="switch">
+								<div id="circle"></div>
+							</div>
+						</div>	
+					</div>		
+				</div>			
+			</div>
+		</div>
+	</div>
+	<div class="my-5 py-5">
+	</div>
+
+
+	<section class="module parallax parallax-1" data-type="background" data-speed="10">
+	  <div class="parallax-container">
+	    <h1>Power</h1>
+	  </div>
+	</section>
+
+	<section  class="module content">
+	  <div class="parallax-container">
+	    <h2>Lorem Ipsum Dolor</h2>
+	    <p>Lorem ipsum dolor...</p>
+	  </div>
+	</section>
+
+	<section class="module parallax parallax-2" data-type="background" data-speed="10">
+	  <div class="parallax-container">
+	    <h1>track</h1>
+	  </div>
+	</section>
+
+	<section class="module content">
+	  <div class="parallax-container">
+	    <h2>Lorem Ipsum Dolor</h2>
+	    <p>Lorem ipsum dolor...</p>
+	  </div>
+	</section>
+
+
+
+	<!-- LOGIN AND SIGNUP -->
+	<div id="id01" class="login-reg-panel modal">
+		<span onclick="document.getElementById('id01').style.display='none'"
+		class="close" title="Close Modal">&times;</span>
+		<div class="whole">
+			<div class="login-info-box">
+				<h2>Have an account?</h2>
+				<p>Lorem ipsum dolor sit amet</p>
+				<label id="label-register" for="log-reg-show">Login</label>
+				<input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
+			</div>
+								
+			<div class="register-info-box">
+				<h2>Don't have an account?</h2>
+				<p>Lorem ipsum dolor sit amet</p>
+				<label id="label-login" for="log-login-show">Register</label>
+				<input type="radio" name="active-log-panel" id="log-login-show">
+			</div>
+								
+			<div class="white-panel">
+				<div class="login-show">
+					<h2>LOGIN</h2>
+					<input type="text" placeholder="Email" id="loginemail">
+					<input type="password" placeholder="Password" id="loginpassword">
+					<input type="number" placeholder="Userid" id="userid"> 
+					<select id="type2">
+						<option value="" disabled selected>Select your option</option>
+						<option value="Manufacturer">Manufacturer</option>
+						<option value="User">User</option>
+					</select>
+					<input type="button" id="btn3" value="Login">
+					<a href="">Forgot password?</a>
+				</div>
+				<div class="register-show">
+					<h2>REGISTER</h2>
+					<input type="text" id="name" placeholder="Name">
+					<input type="text" placeholder="Email" id="email">
+					<input type="password" placeholder="Password" id="password">
+					<select id="type">
+						<option value="" disabled selected>Select your option</option>
+						<option value="Manufacturer">Manufacturer</option>
+						<option value="User">User</option>
+					</select>
+					<input type="button" id="btn" href="homepage.html" value="Register">
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<footer class="new_footer_area bg_color">
+            <div class="new_footer_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
+                                <p>mmaswin22@gmail.com</p>
+                                <form action="#" class="f_subscribe_two mailchimp" method="post" novalidate="true" _lpchecked="1">
+                                    <input type="text" name="EMAIL" class="form-control memail" placeholder="Email">
+                                    <button class="btn btn_get btn_get_two" type="submit">Subscribe</button>
+                                    <p class="mchimp-errmessage" style="display: none;"></p>
+                                    <p class="mchimp-sucmessage" style="display: none;"></p>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Download</h3>
+                                <ul class="list-unstyled f_list">
+                                    <li><a href="#">Company</a></li>
+                                    <li><a href="#">Android App</a></li>
+                                    <li><a href="#">ios App</a></li>
+                                    <li><a href="#">Desktop</a></li>
+                                    <li><a href="#">Projects</a></li>
+                                    <li><a href="#">My tasks</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Help</h3>
+                                <ul class="list-unstyled f_list">
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                    <li><a href="#">Reporting</a></li>
+                                    <li><a href="#">Documentation</a></li>
+                                    <li><a href="#">Support Policy</a></li>
+                                    <li><a href="#">Privacy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
+                                <h3 class="f-title f_600 t_color f_size_18">Team Solutions</h3>
+                                <div class="f_social_icon">
+                                    <a href="#" class="fab fa-github"></a>
+                                    <a href="#" class="fab fa-twitter"></a>
+                                    <a href="#" class="fab fa-linkedin"></a>
+                                    <a href="#" class="fab fa-instagram"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_bg">
+                    <div class="footer_bg_one"></div>
+                    <div class="footer_bg_two"></div>
+                </div>
+            </div>
+            
+        </footer>
+
+
+	<script type="text/javascript" src="homepage.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
