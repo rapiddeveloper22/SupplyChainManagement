@@ -244,6 +244,11 @@ contract Supply is Initializable {
         );
     }
 
+    //Get length of array
+    function GetLengthOfArray(uint256 _MobileId) public view returns(uint256) {
+        return MobileIdToTrack[_MobileId].length;
+    }
+
     //Get Manufacturer details using Id
     function GetManufacturer(uint256 _ManufacturerId)
         public

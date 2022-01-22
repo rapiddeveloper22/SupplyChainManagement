@@ -73,15 +73,29 @@ let AddMobile = async() => {
         let MobileName = $("#modelname").val();
         let ManufacturerName = $("#manufacturername").val();
         let OwnerId = $("#ownerid").val();
-        console.log(typeof(OwnerId));
         let IMEINumber = $("#imeinumber").val();
 
         await contract.methods.AddMobile(MobileName, ManufacturerName, "Manufacturer", OwnerId, IMEINumber).send({from : accounts[0]});
         let MobileIdd = await contract.methods.GetIdOfMobile(IMEINumber).call();
-        console.log(MobileIdd);
 
         $(".result").append("<h3>Id of added mobile is "+ MobileIdd + "</h3>");
 
+    });
+};
+
+let trackwhole = async() => {
+    $("#whole").on("click", async(e) => {
+        e.preventDefault();
+        let idtobeknown = $("#history").val();
+        let totalarray = await contract.methods.GetLengthOfArray(idtobeknown).call();
+        $(".result").append("<div class='tbl-header'><table cellpadding='0' cellspacing='0' border='0'><thead><tr><th>S.No</th><th>Previous Owner Id</th><th>Previous Owner Type</th><th>New Owner Id</th><th>New Owner Type</th></tr></thead></table></div>");
+        $(".result").append("<div class='tbl-content'><table id='too' cellpadding='0' cellspacing='0' border='0'><tbody>")
+        for(var i = 0; i < totalarray; i++) {
+            let ret = await contract.methods.GetMobileOwnershipTracking(idtobeknown, i).call();
+
+            $("#too").append("<tr><td>" + (i+1) + "</td><td>" + ret[0] + "</td><td>" + ret[3] + "</td><td>" + ret[1] + "</td><td>" + ret[2] + "</td></tr>");
+        }
+        $(".result").append("</tbody></table></div>");
     });
 };
 
@@ -93,21 +107,25 @@ let login = async() => {
         let loginpassword = $("#loginpassword").val();
         let userid = $("#userid").val();
         let usertype = $("#type2").val();
-        console.log("Heyyy");
         let allow = await contract.methods.VerifyLogin(loginpassword, userid, usertype).call();
-        console.log(allow);
 
-        if(usertype == "Manufacturer") {
-            window.location.replace('manufacturer/manufacturer.html');
-            document.cookie = "type=0;path=/";
-            $("#remove").remove();
-            type=0;
+        if(allow == true) {
+            if(usertype == "Manufacturer") {
+                window.location.replace('manufacturer/manufacturer.html');
+                document.cookie = "type=0;path=/";
+                $("#remove").remove();
+                type=0;
+            }
+            else if(usertype == "User") {
+                window.location.replace('user/user.html');
+                document.cookie = "type=1;path=/";
+                $("#remove").remove();
+                type = 1;
+            }
         }
-        else if(usertype == "User") {
-            window.location.replace('user/user.html');
-            document.cookie = "type=1;path=/";
-            $("#remove").remove();
-            type = 1;
+
+        else {
+            alert("Invalid login credentials");
         }
     });
 
@@ -119,9 +137,7 @@ let Findmobile = async() => {
 
     $("#findmobile").on("click", async(e) => {
         $(".result").empty();
-        console.log("Heyy");
         let mobileid = $("#mobileid").val();
-        console.log(mobileid);
         let totalmobile = await contract.methods.GetTotalMobile().call();
         if(mobileid < totalmobile)
         {
@@ -144,9 +160,7 @@ let Finduser = async() => {
 
     $("#finduser").on("click", async(e) => {
         $(".result").empty();
-        console.log("Heyy");
         let userid = $("#userid").val();
-        console.log(userid);
         let totaluser = await contract.methods.GetTotalUser().call();
         if(userid < totaluser)
         {
@@ -169,9 +183,7 @@ let Findmanufacturer = async() => {
 
     $("#findmanufacturer").on("click", async(e) => {
         $(".result").empty();
-        console.log("Heyy");
         let manufacturerid = $("#manufacturerid").val();
-        console.log(manufacturerid);
         let totalmanufacturer = await contract.methods.GetTotalManufacturer().call();
         if(manufacturerid < totalmanufacturer)
         {
@@ -192,32 +204,47 @@ let Findmanufacturer = async() => {
 
 let transferOwner = async() => {
 
-    $("#btn4").on("click", async(e) => {
-        console.log("transferOwner");
+    $("#transfer").on("click", async(e) => {
+        $(".result").empty();
         let previousownerid = $("#previousownerid").val();
         let newownerid = $("#newownerid").val();
         let previousownertype = $("#previousownertype").val();
         let newownertype = $("#Newownertype").val();
         let mmii = $("#transfermobileid").val();
 
-        console.log(previousownerid + " " + newownerid + " " + previousownertype + " " + newownertype + " " + mmii);
-
         await contract.methods.TransferOwnership(previousownerid, newownerid, newownertype, mmii, previousownertype).send({from : accounts[0]});
+    
+        $(".result").append("<h3>Ownership Transferred</h3>");
     });
 };
 
 
-let track = async() => {
+let trackusingmobileid = async() => {
 
-    $("#btn5").on("click", async(e) => {
-        let idof = $("#idd").val();
-        let noofowner = $("#ownernumber").val();
+    $("#trackusingid").on("click", async(e) => {
+        $(".result").empty();
 
-        let ret = await contract.methods.GetMobileOwnershipTracking(idof, noofowner).call();
-        console.log(ret[0] + " " + ret[1] + " " + ret[2] + " " + ret[3]);   
+        let mid = $("#mid").val();
+        let ono = $("#ono").val();
+
+        let ret = await contract.methods.GetMobileOwnershipTracking(mid, ono).call();
+        $(".result").append("<h3>Search Results</h3><p>Previous Owner Id : " + ret[0] + "</p><p>Previous Owner Type : " + ret[3] + "</p><p>New Owner Id : " + ret[1] + "</p><p>New Owner Type : " + ret[2] + "</p>");
     });
-
 }
+
+let trackusingimeinumber = async() => {
+
+    $("#trackusingimeinumber").on("click", async(e) => {
+        $(".result").empty();
+        let imei = $("#imei").val();
+        let onoo = $("#onoo").val();
+
+        let idd = await contract.methods.GetIdOfMobile(imei).call();
+        let ret = await contract.methods.GetMobileOwnershipTracking(idd, onoo).call();
+        $(".result").append("<h3>Search Results</h3><p>Previous Owner Id : " + ret[0] + "</p><p>Previous Owner Type : " + ret[3] + "</p><p>New Owner Id : " + ret[1] + "</p><p>New Owner Type : " + ret[2] + "</p>");
+
+    });
+};
 
 async function app() {
     const web3 = await getWeb3();
@@ -229,11 +256,14 @@ async function app() {
     AddMobile();
     login();
     transferOwner();
-    track();
     Findmobile();
     Findmanufacturer();
     Finduser();
+    trackwhole();
+    trackusingmobileid();
+    trackusingimeinumber();
 }
+
 app();
 
 

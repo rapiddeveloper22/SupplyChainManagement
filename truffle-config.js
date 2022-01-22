@@ -23,6 +23,15 @@
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
+
+require('dotenv').config();
+var HDWalletProvider = require("truffle-hdwallet-provider");
+var mnemonic = process.env["NEMONIC"];
+var tokenKey = process.env["ENDPOINT_KEY"];
+const MetaMaskAccountIndex = 0;
+
+
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -45,6 +54,21 @@ module.exports = {
       host: "127.0.0.1",     // Localhost (default: none)
       port: 8545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
+    },
+    // ropsten_infura: {
+    //   provider: new HDWalletProvider(process.env.MNEMONIC, "https://ropsten.infura.io/v3/ddcc0a6be1fe40b5bd0ed151e8e225e6", MetaMaskAccountIndex),
+    //   network_id: "3"
+    // },
+    // goerli_infura: {
+    //   provider: new HDWalletProvider(process.env.MNEMONIC, "https://goerli.infura.io/v3/ddcc0a6be1fe40b5bd0ed151e8e225e6", MetaMaskAccountIndex),
+    //   network_id: "5"
+    // },
+
+    rinkeby: {
+      provider: new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/" + tokenKey),
+      network_id: "4",
+      gas: 6700000,
+      gasPrice: 10000000000
     }
     // Another network with more advanced options...
     // advanced: {

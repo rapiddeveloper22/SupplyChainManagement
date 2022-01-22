@@ -74,8 +74,8 @@
 
 
 
-            <a href="#" class="navbar-brand font-weight-bold d-block d-lg-none">Services</a> <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"> <span class="navbar-toggler-icon"></span> </button>
-    <div id="navbarContent" class="collapse navbar-collapse">
+            <a href="#" class="ree navbar-brand font-weight-bold d-block d-lg-none">Services</a> <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"> <span class="navbar-toggler-icon"></span> </button>
+    <div id="navbarContent" class="ree collapse navbar-collapse">
         <ul class="navbar-nav mx-auto">
             <li class="nav-item dropdown megamenu"><a id="megamneu" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle font-weight-bold text-uppercase">Services</a>
                 <div aria-labelledby="megamneu" class="dropdown-menu border-0 p-0 m-0">
@@ -104,7 +104,7 @@
 
     <div id="navbarContent" class="collapse navbar-collapse">
         <ul class="navbar-nav mx-auto">
-            <li class="logout nav-item megamenu"><a id="megamneu" href="../homepage.html" class="nav-link font-weight-bold text-uppercase">Logout</a>
+            <li class="logout nav-item megamenu"><a id="megamneu" href="../homepage.html" class="logremove nav-link font-weight-bold text-uppercase">Logout</a>
             </li>
 
         </ul>
@@ -128,7 +128,7 @@
 			    </div>
 
 
-                <div class="result">
+                <div style="margin-left: -10px;" class="result">
                     
                     
                 </div>
@@ -160,7 +160,17 @@
     if(user == 1)
         $("#remove").remove();
 
-
+    if((user != 1 || user != 0)) {
+        $(".logremove").html("Home");
+        var too = $(".ree").parent();
+        var hey = $(".ree").detach();
+    }
+    
+    if(user == 1 || user == 0) {
+        $(".logremove").html("Logout");
+        too.append(hey);
+    }
+    
     $(".logout").on("click", () => {
         document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
     });
