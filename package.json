@@ -10,5 +10,13 @@
   "scripts": {
     "start": "npm run lite",
     "lite": "lite-server"
+  },
+  {
+    "name": "myapp",
+    "description": "a really cool app",
+    "version": "1.0.0",
+    "engines": {
+      "node": "16.x"
+    }
   }
 }
