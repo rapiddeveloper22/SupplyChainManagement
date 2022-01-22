@@ -6,11 +6,13 @@
   "dependencies": {
     "browser-sync": "^2.27.7",
     "lite-server": "^2.6.1",
+    "serve": "^13.0.2",
     "truffle-hdwallet-provider": "^1.0.17"
   },
   "scripts": {
-    "start": "npm run lite",
-    "lite": "lite-server"
+    "start": "npm run test",
+    "dev": "lite-server",
+    "test": "lite-server"
   },
   "name": "myapp",
   "description": "a really cool app",
