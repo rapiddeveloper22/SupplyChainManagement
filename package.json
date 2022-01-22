@@ -4,6 +4,7 @@
     "dotenv": "^14.2.0"
   },
   "dependencies": {
+    "browser-sync": "^2.27.7",
     "lite-server": "^2.6.1",
     "truffle-hdwallet-provider": "^1.0.17"
   },
