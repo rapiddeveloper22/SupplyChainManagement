@@ -7,5 +7,6 @@
         "routes": {
             "/vendor": "./node_modules"
         }
-    }
+    },
+    "brave": "-browser 'brave.exe'"
 }
